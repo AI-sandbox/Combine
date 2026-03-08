@@ -1,0 +1,81 @@
+[project]
+name = "combine"
+dynamic = ["version"]
+authors = [
+    { name="James Yang", email="jamesyang916@gmail.com" },
+    { name="David Bonet", email="davidbonetsole@gmail.com" },
+]
+maintainers = [
+    { name="James Yang", email="jamesyang916@gmail.com" },
+    { name="David Bonet", email="davidbonetsole@gmail.com" },
+]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3 :: Only",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development",
+    "Topic :: Scientific/Engineering",
+    "Typing :: Typed",
+    "Operating System :: OS Independent",
+]
+description = "Combine tools"
+license = {file = "LICENSE"}
+keywords = ["snps", "GWAS", "PRS", "LAI"]
+readme = "README.md"
+requires-python = ">=3.9,<3.11"
+dependencies = [
+    "adelie",
+    "numpy",
+    "pandas",
+    "pgenlib",
+    "tqdm",
+]
+
+[project.urls]
+Homepage = "https://github.com/AI-sandbox/Combine"
+
+[tool.poetry]
+name = "combine"
+version = "0.0.0"
+description = "Combine"
+authors = [
+    "James Yang <jamesyang916@gmail.com>",
+    "David Bonet <davidbonetsole@gmail.com>",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+numpy = "^1.24.2"
+pandas = "^1.5.3"
+tqdm = "^4.65.0"
+adelie = "^1.1.49"
+pgenlib = "^0.91.0"
+pybind11 = "^2.13.6"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.1"
+
+[tool.poetry.group.dev.dependencies]
+pybind11 = "^2.11.1"
+ipython = "^8.11.0"
+nbformat = "^5.7.3"
+jupyter = "^1.0.0"
+jupytext = "^1.14.5"
+
+[tool.jupytext]
+notebook_metadata_filter = "-all"
+cell_metadata_filter = "-all"
+
+[build-system]
+requires = [
+    "setuptools", 
+    "pybind11",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]

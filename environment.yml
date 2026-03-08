@@ -1,0 +1,11 @@
+name: combine
+channels:
+  - conda-forge
+dependencies:
+  - python==3.10
+  - pip
+  - ffmpeg
+  - ccache
+  - pip:
+    - pip
+    - poetry
