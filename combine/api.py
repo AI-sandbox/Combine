@@ -156,6 +156,7 @@ def read_lai(
     )
 
     logger.logger.info(f"Searching for LAI indices for each SNP position.")
+    snps = np.asarray(snps, dtype=np.int64)
     lai_indices = np.searchsorted(
         reader.pos[:, 0], 
         snps, 
@@ -191,7 +192,8 @@ def cache_snpdat(
         comment='#',
         header=None, 
         names=['CHROM', 'POS', 'ID', 'REF', 'ALT'],
-        dtype={'CHROM': str},
+        dtype={'CHROM': str, 'POS': np.int64},
+        low_memory=False,
     )
     psam_df = pd.read_csv(psam, sep='\t')
 
@@ -260,9 +262,8 @@ def cache_combine_r_snpdat(
     sort_indices: bool =True,
     n_threads: int =1,
 ):
-    """Cache SNP Combine-R format to a ``.snpdat`` file.
-
-    Combine-R corresponds to the unphased-ancestry representation.
+    """
+    Cache SNP Combine-R format to a `.snpdat` file.
     """
     logger.logger.info(f"Reading PGEN metadata files.")
     pvar_df = pd.read_csv(
@@ -271,7 +272,8 @@ def cache_combine_r_snpdat(
         comment='#',
         header=None, 
         names=['CHROM', 'POS', 'ID', 'REF', 'ALT'],
-        dtype={'CHROM': str},
+        dtype={'CHROM': str, 'POS': np.int64},
+        low_memory=False,
     )
     psam_df = pd.read_csv(psam, sep='\t')
     
@@ -319,7 +321,7 @@ def cache_combine_r_snpdat(
     logger.logger.info("Saving as snpdat (Combine-R).")
     n_ancestries = len(reader.ancestry_map)
     logger.logger.info(f"Number of ancestries {n_ancestries}")
-    handler = ad.io.snp_unphased_ancestry(dest)
+    handler = ad.io.snp_combine_r(dest)
     bytes_written = handler.write(
         calldata=calldata,
         ancestries=lai,
@@ -343,9 +345,8 @@ def cache_combine_s_snpdat(
     sort_indices: bool =True,
     n_threads: int =1,
 ):
-    """Cache SNP Combine-S format to a ``.snpdat`` file.
+    """Cache SNP Combine-S format to a `.snpdat` file.
 
-    Combine-S corresponds to the both-ancestry representation.
     This writes a file for Combine-S where, for each SNP ``j``,
     the dense view has ``2 * A`` columns:
       - first ``A`` columns: mutated haplotype counts per ancestry (like phased ancestry)
@@ -374,7 +375,8 @@ def cache_combine_s_snpdat(
         comment='#',
         header=None,
         names=['CHROM', 'POS', 'ID', 'REF', 'ALT'],
-        dtype={'CHROM': str},
+        dtype={'CHROM': str, 'POS': np.int64},
+        low_memory=False,
     )
     psam_df = pd.read_csv(psam, sep='\t')
 
@@ -413,13 +415,12 @@ def cache_combine_s_snpdat(
         n_threads=n_threads,
     )
 
-    # Combine-S expects phased calldata and phased LAI, both (n, 2*s)
     assert calldata.shape == lai.shape, "Calldata and LAI must both be shaped (n, 2*s) for Combine-S format!"
 
     logger.logger.info("Saving as snpdat (Combine-S).")
     n_ancestries = len(reader.ancestry_map)
     logger.logger.info(f"Number of ancestries {n_ancestries}")
-    handler = ad.io.snp_both_ancestry(dest)
+    handler = ad.io.snp_combine_s(dest)
 
     if selected_ancestries is None:
         bytes_written, benchmark = handler.write(
