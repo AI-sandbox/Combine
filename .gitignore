@@ -27,3 +27,4 @@ uv.lock
 .env
 .pytest_cache/
 combine.egg-info
+data/
