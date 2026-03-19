@@ -15,6 +15,9 @@ Group lasso solver used in Combine: [adelie](https://github.com/JamesYang007/ade
 
 ## Installation
 
+Setup takes 1 minute using [uv](https://docs.astral.sh/uv/) on a desktop computer.
+
+
 ```bash
 # 1. Clone and install solver with Combine support
 cd ..
@@ -129,7 +132,7 @@ combine.api.cache_combine_s_snpdat(
 
 ## Usage example
 
-Run the simulated demo with:
+Run the simulated demo (runtime <5s) with:
 
 ```bash
 python examples/run_simulated_demo.py
