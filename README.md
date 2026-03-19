@@ -129,6 +129,12 @@ combine.api.cache_combine_s_snpdat(
 
 ## Usage example
 
+Run the simulated demo with:
+
+```bash
+python examples/run_simulated_demo.py
+```
+
 A typical workflow to generate `.snpdat` files from a biobank dataset:
 
 ```python

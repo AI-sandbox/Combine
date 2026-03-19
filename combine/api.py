@@ -513,7 +513,7 @@ def valid_iids(
         phe_iids = master_df["IID"]
 
         # get MSP IIDs with non-missing phenotype
-        reader = io.msp_reader.MSPReader(msp)
+        reader = io.MSPReader(msp)
         msp_iids = pd.Series(reader.sample_IDs)
         common_iids = msp_iids[msp_iids.isin(phe_iids)]
         logger.logger.info(f"Number of discarded MSP IIDs: {msp_iids.shape[0] - common_iids.shape[0]}")
