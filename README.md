@@ -21,14 +21,15 @@ Setup takes 1 minute using [uv](https://docs.astral.sh/uv/) on a desktop compute
 ```bash
 # 1. Clone and install solver with Combine support
 cd ..
-git clone https://github.com/JamesYang007/adelie/tree/combine
+git clone https://github.com/JamesYang007/adelie.git
 cd adelie
+git checkout combine
 pip install -e .
 cd ..
 
 # 2. Clone and install Combine
-git clone https://github.com/davidbonet/combine.git
-cd Combine
+git clone https://github.com/AI-sandbox/combine.git
+cd combine
 pip install -e .
 ```
 
