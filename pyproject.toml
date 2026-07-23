@@ -27,7 +27,7 @@ description = "Combine tools"
 license = {file = "LICENSE"}
 keywords = ["snps", "GWAS", "PRS", "LAI"]
 readme = "README.md"
-requires-python = ">=3.9,<3.11"
+requires-python = ">=3.9"
 dependencies = [
     "adelie",
     "numpy",
