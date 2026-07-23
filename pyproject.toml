@@ -49,7 +49,7 @@ authors = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
+python = ">=3.9"
 numpy = "^1.24.2"
 pandas = "^1.5.3"
 tqdm = "^4.65.0"
